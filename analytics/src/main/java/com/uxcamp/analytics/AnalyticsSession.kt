@@ -16,7 +16,7 @@ class AnalyticsSession(private val context: Context) {
 
 
     private val startTime: Long = System.currentTimeMillis()
-    private var endTime: Long? = null
+ 
     private val database: AppDatabase = Room.databaseBuilder(
         context,
         AppDatabase::class.java, "analytics-database"
@@ -27,16 +27,10 @@ class AnalyticsSession(private val context: Context) {
         persistSessionData(event)
     }
 
-    fun endSession() {
-        endTime = System.currentTimeMillis()
-
-
-    }
 
     private fun persistSessionData( event: Event) {
         if (UserInfo.environment == ENVIRONMENT.DEBUG) {
             println("Session started at: $startTime")
-            println("Session ended at: $endTime")
             println("Events: $event")
         }
 

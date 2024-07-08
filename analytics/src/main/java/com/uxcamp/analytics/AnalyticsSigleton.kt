@@ -14,7 +14,6 @@ object AnalyticsSingleton {
 
     fun stopSession() {
         if(currentSession!=null){
-            currentSession?.endSession()
             currentSession = null
         }
 
