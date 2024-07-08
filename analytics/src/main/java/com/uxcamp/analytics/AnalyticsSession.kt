@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 class AnalyticsSession(private val context: Context) {
 
 
-    private val events = mutableListOf<Event>()
     private val startTime: Long = System.currentTimeMillis()
     private var endTime: Long? = null
     private val database: AppDatabase = Room.databaseBuilder(
@@ -24,7 +23,6 @@ class AnalyticsSession(private val context: Context) {
     ).build()
 
     fun addEvent(event: Event) {
-        events.add(event)
         // Save data
         persistSessionData(event)
     }
@@ -39,7 +37,7 @@ class AnalyticsSession(private val context: Context) {
         if (UserInfo.environment == ENVIRONMENT.DEBUG) {
             println("Session started at: $startTime")
             println("Session ended at: $endTime")
-            println("Events: $events")
+            println("Events: $event")
         }
 
 
