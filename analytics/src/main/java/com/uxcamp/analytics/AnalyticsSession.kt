@@ -25,16 +25,17 @@ class AnalyticsSession(private val context: Context) {
 
     fun addEvent(event: Event) {
         events.add(event)
+        // Save data
+        persistSessionData(event)
     }
 
     fun endSession() {
         endTime = System.currentTimeMillis()
 
-        // Save data if user end the session
-        persistSessionData()
+
     }
 
-    private fun persistSessionData() {
+    private fun persistSessionData( event: Event) {
         if (UserInfo.environment == ENVIRONMENT.DEBUG) {
             println("Session started at: $startTime")
             println("Session ended at: $endTime")
@@ -45,8 +46,6 @@ class AnalyticsSession(private val context: Context) {
         // Save device info and event on room database
         CoroutineScope(Dispatchers.IO).launch {
 
-            events.forEach { event ->
-
                 val eventEntity = EventEntity(
                     sessionId = startTime,
                     name = event.name,
@@ -55,7 +54,7 @@ class AnalyticsSession(private val context: Context) {
                 )
                 database.eventDao().insert(eventEntity)
             }
-        }
+
     }
 
     private fun getDeviceInfo(): String {

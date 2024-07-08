@@ -6,20 +6,20 @@ plugins {
     id("kotlin-kapt")
     id("maven-publish")
 }
-fun getLocalProperty(key: String): String? {
-    val propertiesFile = rootProject.file("github.properties")
-    if (!propertiesFile.exists()) {
-        return null
-    }
-    val properties = Properties()
-    properties.load(propertiesFile.inputStream())
-    return properties.getProperty(key)
-}
-val githubUser: String? = getLocalProperty("gpr.user") ?: System.getenv("USERNAME")
-val githubToken: String? = getLocalProperty("gpr.token") ?: System.getenv("TOKEN")
-
-val getVersionName = { "1.0.1" }
-val getArtifactId = { "uxTestAnalytics" }
+//fun getLocalProperty(key: String): String? {
+//    val propertiesFile = rootProject.file("github.properties")
+//    if (!propertiesFile.exists()) {
+//        return null
+//    }
+//    val properties = Properties()
+//    properties.load(propertiesFile.inputStream())
+//    return properties.getProperty(key)
+//}
+//val githubUser: String? = getLocalProperty("gpr.user") ?: System.getenv("USERNAME")
+//val githubToken: String? = getLocalProperty("gpr.token") ?: System.getenv("TOKEN")
+//
+//val getVersionName = { "1.0.1" }
+//val getArtifactId = { "uxTestAnalytics" }
 
 
 
